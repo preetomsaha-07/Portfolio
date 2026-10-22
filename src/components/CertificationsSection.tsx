@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { portfolioData } from '../data/portfolio';
 import type { CertificationItem } from '../data/portfolio';
-import { Award, ExternalLink, ShieldCheck, CheckCircle2, Clock, Eye, X } from 'lucide-react';
+import { Award, ExternalLink, ShieldCheck, CheckCircle2, Clock, Eye, X, FileText } from 'lucide-react';
 
 export function CertificationsSection() {
   const { certifications } = portfolioData;
@@ -21,7 +21,7 @@ export function CertificationsSection() {
             Certifications, Badges & Professional Courses
           </h2>
           <p className="mt-3 text-base text-theme-muted leading-relaxed">
-            Verified credentials from Tata Consultancy Services (TCS iON), IBM SkillsBuild, Infosys Springboard, Google Cloud, and Best Computer Technology.
+            All credentials pulled from LinkedIn posts and official certifications: IBM SkillsBuild, Google Cloud, Tata Consultancy Services (TCS iON), Infosys Springboard, Best Computer Technology, and WBCHSE.
           </p>
         </div>
 
@@ -56,8 +56,8 @@ export function CertificationsSection() {
                   )}
                 </div>
 
-                {/* Optional Certificate Thumbnail */}
-                {cert.imagePath && (
+                {/* Certificate Thumbnail or Document Icon */}
+                {cert.imagePath ? (
                   <div
                     onClick={() => setActiveCertificate(cert)}
                     className="mt-4 aspect-16/10 rounded-lg overflow-hidden border border-theme bg-theme-alt relative group cursor-pointer"
@@ -70,10 +70,19 @@ export function CertificationsSection() {
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-xs font-semibold gap-1.5 transition-opacity">
                       <Eye className="w-4 h-4" />
-                      <span>View Credential</span>
+                      <span>Inspect Credential</span>
                     </div>
                   </div>
-                )}
+                ) : cert.pdfPath ? (
+                  <div
+                    onClick={() => setActiveCertificate(cert)}
+                    className="mt-4 aspect-16/10 rounded-lg overflow-hidden border border-theme bg-theme-alt flex flex-col items-center justify-center p-4 relative group cursor-pointer"
+                  >
+                    <FileText className="w-10 h-10 text-theme-accent mb-1 group-hover:scale-110 transition-transform" />
+                    <span className="text-xs font-medium text-theme-main">View Official PDF</span>
+                    <span className="text-[11px] text-theme-muted">Click to preview document</span>
+                  </div>
+                ) : null}
 
                 {/* Title */}
                 <h3 className="mt-4 text-base font-bold text-theme-main leading-snug">
@@ -85,7 +94,7 @@ export function CertificationsSection() {
                   <div>Issued: <span className="font-medium text-theme-main">{cert.issueDate}</span></div>
                   {cert.credentialId && (
                     <div className="font-mono text-[11px] text-theme-accent">
-                      ID: {cert.credentialId}
+                      {cert.credentialId.startsWith('ID:') || cert.credentialId.startsWith('No.') ? cert.credentialId : `ID: ${cert.credentialId}`}
                     </div>
                   )}
                 </div>
@@ -93,7 +102,7 @@ export function CertificationsSection() {
                 {/* Topics Covered */}
                 <div className="mt-4 pt-3 border-t border-theme">
                   <span className="text-[11px] font-semibold text-theme-muted uppercase tracking-wider block mb-1.5">
-                    Topics Covered
+                    Topics & Highlights
                   </span>
                   <ul className="space-y-1 text-xs text-theme-muted">
                     {cert.topicsCovered.slice(0, 3).map((topic, i) => (
@@ -108,18 +117,18 @@ export function CertificationsSection() {
 
               {/* Action Buttons */}
               <div className="mt-5 pt-3 border-t border-theme flex items-center justify-between gap-2">
-                {cert.imagePath ? (
+                {cert.imagePath || cert.pdfPath ? (
                   <button
                     type="button"
                     onClick={() => setActiveCertificate(cert)}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-theme-accent hover:underline cursor-pointer"
                   >
                     <Eye className="w-3.5 h-3.5" />
-                    <span>Inspect Image</span>
+                    <span>{cert.pdfPath ? 'Preview Document' : 'Inspect Credential'}</span>
                   </button>
                 ) : (
                   <span className="text-[11px] text-theme-muted italic">
-                    PDF Document Verified
+                    Verified Credential ID
                   </span>
                 )}
 
@@ -141,8 +150,8 @@ export function CertificationsSection() {
 
       </div>
 
-      {/* Certificate Image Viewer Modal */}
-      {activeCertificate && activeCertificate.imagePath && (
+      {/* Certificate Viewer Modal (Image or PDF) */}
+      {activeCertificate && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
           <div className="relative w-full max-w-3xl bg-theme-card border border-theme rounded-2xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex items-start justify-between pb-3 border-b border-theme">
@@ -155,7 +164,7 @@ export function CertificationsSection() {
                 </h4>
                 {activeCertificate.credentialId && (
                   <p className="font-mono text-xs text-theme-muted mt-0.5">
-                    Credential ID: {activeCertificate.credentialId}
+                    {activeCertificate.credentialId}
                   </p>
                 )}
               </div>
@@ -169,14 +178,24 @@ export function CertificationsSection() {
               </button>
             </div>
 
+            {/* Modal Body */}
             <div className="mt-4 rounded-xl overflow-hidden border border-theme bg-theme-alt flex justify-center p-2">
-              <img
-                src={activeCertificate.imagePath}
-                alt={activeCertificate.title}
-                className="max-w-full max-h-[60vh] object-contain rounded-lg"
-              />
+              {activeCertificate.imagePath ? (
+                <img
+                  src={activeCertificate.imagePath}
+                  alt={activeCertificate.title}
+                  className="max-w-full max-h-[60vh] object-contain rounded-lg"
+                />
+              ) : activeCertificate.pdfPath ? (
+                <iframe
+                  src={`${activeCertificate.pdfPath}#toolbar=1`}
+                  title={activeCertificate.title}
+                  className="w-full h-[60vh] rounded-lg border-none"
+                />
+              ) : null}
             </div>
 
+            {/* Modal Footer */}
             <div className="mt-4 pt-3 border-t border-theme flex items-center justify-between">
               {activeCertificate.verificationUrl ? (
                 <a
@@ -188,9 +207,19 @@ export function CertificationsSection() {
                   <span>Open Verification Authority</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
+              ) : activeCertificate.pdfPath ? (
+                <a
+                  href={activeCertificate.pdfPath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-theme-accent hover:underline"
+                >
+                  <span>Open in New Tab</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               ) : (
                 <span className="text-xs text-theme-muted">
-                  Official credential image
+                  Official credential record
                 </span>
               )}
 

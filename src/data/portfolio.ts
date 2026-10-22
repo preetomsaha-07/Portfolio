@@ -21,6 +21,7 @@ export interface EducationItem {
   location: string;
   highlights: string[];
   verification: VerificationTag;
+  certificateImagePath?: string;
 }
 
 export interface ExperienceItem {
@@ -77,6 +78,7 @@ export interface CertificationItem {
   credentialId?: string;
   verificationUrl?: string;
   imagePath?: string;
+  pdfPath?: string;
   topicsCovered: string[];
   verification: VerificationTag;
 }
@@ -120,7 +122,7 @@ export const portfolioData: PortfolioData = {
   personal: {
     name: "Preetom Saha",
     headline: "B.Tech Computer Science & Engineering (Data Science) Student",
-    subheadline: "Aspiring AI/ML & Cloud Developer | Practical Experience with Google Cloud Vertex AI, PySpark, LLMs & Data Analytics",
+    subheadline: "Aspiring AI/ML & Cloud Developer | Hands-On Experience with IBM SkillsBuild, Google Cloud Vertex AI, PySpark, LLMs & Data Analytics",
     currentRole: "2nd Year B.Tech Student at Narula Institute of Technology",
     location: "Agarpara, Kolkata - 700058, West Bengal, India",
     email: "mr.preetomsaha@gmail.com",
@@ -128,11 +130,11 @@ export const portfolioData: PortfolioData = {
     photoUrl: "/assets/preetom-photo.jpg",
     resumePdfUrl: "/assets/Preetom_Saha_Resume.pdf",
     hasResumePdf: true,
-    verificationNotice: "All items on this portfolio are verified from Preetom Saha's actual LinkedIn profile, verified academic records, and authentic certificate credentials. Items marked with 'Pending Confirmation' represent research leads awaiting final user review.",
+    verificationNotice: "All items on this portfolio are verified from Preetom Saha's actual LinkedIn profile posts, college enrollment records, and authentic certificate credentials. Items marked with 'Pending Confirmation' represent research leads awaiting final user review.",
     bio: [
       "I am an enthusiastic B.Tech 2nd-year student at Narula Institute of Technology, specializing in Computer Science and Engineering with a focus on Data Science (2025 – 2029).",
-      "My technical journey bridges core computer science, practical data science, and modern generative AI tools. I have hands-on experience in PySpark, Python, Google Cloud Vertex AI, IBM Granite models, and advanced data processing.",
-      "Alongside my technical studies, I strongly value articulate communication, business etiquette, and collaborative problem solving. Having completed professional training through TCS iON Career Edge, IBM SkillsBuild, and Infosys Springboard, I am actively seeking internship opportunities and collaborative projects where I can contribute and continue to grow."
+      "My technical journey bridges core computer science, practical data science, and modern generative AI tools. I have hands-on experience in PySpark, Python, Google Cloud Vertex AI, IBM Granite foundation models, and advanced data analytics.",
+      "Alongside my technical studies, I strongly value articulate communication, business etiquette, and collaborative problem solving. Having completed professional internships and training through IBM SkillsBuild, TCS iON Career Edge, and Infosys Springboard, I am actively seeking internship opportunities and collaborative projects where I can contribute and continue to grow."
     ]
   },
 
@@ -146,7 +148,7 @@ export const portfolioData: PortfolioData = {
     {
       platform: "GitHub",
       url: "https://github.com/",
-      label: "GitHub Profile (Configure in portfolio.ts)",
+      label: "GitHub Profile",
       isAvailable: false
     },
     {
@@ -187,21 +189,47 @@ export const portfolioData: PortfolioData = {
       id: "ariadaha-hs",
       institution: "Ariadaha Kalachand High School",
       degree: "Higher Secondary (10+2)",
-      fieldOfStudy: "Science Stream",
+      fieldOfStudy: "Science Stream (WBCHSE)",
       period: "Completed 2025",
-      status: "Graduated",
+      status: "Graduated with Grade B+",
+      rollNumber: "Roll 465211 No. 1029",
       location: "Ariadaha, Kolkata, West Bengal",
+      certificateImagePath: "/assets/wbchse-hs-certificate.jpg",
       highlights: [
-        "Completed Higher Secondary education with focus on science fundamentals, mathematics, and computing principles."
+        "Completed Higher Secondary education from West Bengal Council of Higher Secondary Education (WBCHSE).",
+        "Achieved overall Grade B+ on examination (Certificate No: 416062, Issued May 07, 2025)."
       ],
       verification: {
         status: "verified",
-        note: "Confirmed from official resume and academic records."
+        note: "Verified by official WBCHSE Higher Secondary Certificate No: 416062."
       }
     }
   ],
 
   experience: [
+    {
+      id: "ibm-skillsbuild-internship",
+      role: "AI & Emerging Technologies Virtual Intern",
+      organization: "IBM SkillsBuild (in collaboration with CSRBOX / Edunet Foundation)",
+      type: "Virtual Internship",
+      period: "July 2026 – August 2026",
+      duration: "6 Weeks",
+      location: "Remote / Virtual",
+      summary: "Completed an intensive industry virtual internship with IBM SkillsBuild focusing on Enterprise Generative AI, IBM Granite foundation models, and AI-driven data analytics.",
+      responsibilities: [
+        "Leveraged enterprise foundation models (IBM Granite models for software development) to explore code generation, debugging, and automated refactoring workflows.",
+        "Implemented generative AI data extraction and transformation pipelines using LLMs to analyze structured and unstructured tabular datasets.",
+        "Completed industry capstone modules on supercharging data analytics with AI-assisted exploratory data analysis (EDA) and pattern recognition.",
+        "Earned verified digital credentials and completion certificates recognized on Credly."
+      ],
+      technologies: ["IBM Granite Models", "Generative AI", "Large Language Models", "Data Analytics", "Prompt Engineering", "Python"],
+      verification: {
+        status: "verified",
+        note: "Verified via official IBM SkillsBuild Completion Certificate and Credly badges (Issued August 2026)."
+      },
+      hasDocument: true,
+      documentPath: "/assets/ibm-skillsbuild-genai.jpg"
+    },
     {
       id: "eduskills-gcp",
       role: "Google Cloud Generative AI Virtual Intern",
@@ -325,8 +353,8 @@ export const portfolioData: PortfolioData = {
         { name: "PySpark", levelDescription: "Distributed data processing and DataFrame manipulation", verifiedBy: "Infosys Springboard Certified" },
         { name: "Python", levelDescription: "Core scripting, automation, and data analysis pipelines", verifiedBy: "Academic & Internship Practice" },
         { name: "Generative AI & LLMs", levelDescription: "Understanding LLM fundamentals, prompt tuning, and data integration", verifiedBy: "IBM SkillsBuild & TCS iON Certified" },
+        { name: "IBM Granite Models", levelDescription: "Enterprise foundation models for software tasks and coding workflows", verifiedBy: "IBM SkillsBuild Badge" },
         { name: "Prompt Design & Engineering", levelDescription: "Structured prompting, context grounding, and parameter tuning in Vertex AI", verifiedBy: "Google Cloud Skill Badge" },
-        { name: "IBM Granite Models", levelDescription: "Leveraging enterprise foundation models for software tasks", verifiedBy: "IBM SkillsBuild Badge" },
         { name: "Data Analytics", levelDescription: "Data cleaning, exploratory data analysis, and insight extraction", verifiedBy: "IBM & Coursework Certified" }
       ]
     },
@@ -345,9 +373,10 @@ export const portfolioData: PortfolioData = {
       description: "Hands-on experience with modern cloud workspaces and data manipulation software.",
       skills: [
         { name: "Google Cloud Platform (Vertex AI)", levelDescription: "Model exploration, prompt engineering, and GenAI studio", verifiedBy: "Google Cloud Badge & EduSkills" },
+        { name: "IBM SkillsBuild & Credly", levelDescription: "Enterprise AI and analytics learning platform", verifiedBy: "Earned Digital Credentials" },
         { name: "Advanced Microsoft Excel", levelDescription: "Complex formulas, data modeling, PivotTables, and AI augmentation", verifiedBy: "100% Score (Best Computer Technology - BCT/2026/689773)" },
         { name: "Microsoft Office Suite", levelDescription: "Word, PowerPoint, and Excel documentation and technical reports", verifiedBy: "TCS iON & Academic Deliverables" },
-        { name: "Infosys Springboard & IBM SkillsBuild", levelDescription: "Professional enterprise learning platforms", verifiedBy: "Earned Course Certifications" }
+        { name: "Infosys Springboard", levelDescription: "Professional enterprise learning platform", verifiedBy: "PySpark Course Completion" }
       ]
     },
     {
@@ -364,22 +393,69 @@ export const portfolioData: PortfolioData = {
 
   certifications: [
     {
-      id: "tcs-ion",
-      title: "TCS iON Career Edge – Generative AI & Professional Essentials",
-      issuer: "Tata Consultancy Services (TCS iON)",
-      issueDate: "July 21, 2026",
-      validThrough: "25 Apr 2026 – 21 Jul 2026",
-      credentialId: "8766-29971339-1016",
+      id: "ibm-genai-llm",
+      title: "Generative AI Essentials: Using LLMs to Work with Data",
+      issuer: "IBM SkillsBuild",
+      issueDate: "August 23, 2026",
+      verificationUrl: "https://www.credly.com/go/15zj4vFH",
+      imagePath: "/assets/ibm-skillsbuild-genai.jpg",
       topicsCovered: [
-        "Generative AI Essentials & Modern AI Landscape",
-        "Business Etiquette & Professional Conduct",
-        "IT Foundational Skills & Accounting Basics",
-        "Effective Communication & Presentation Skills",
-        "Career Guidance & Resume Crafting"
+        "Large Language Models (LLMs) Architecture Overview",
+        "Applying Generative AI for Data Extraction and Analysis",
+        "Ethical AI Governance and Hallucination Mitigation",
+        "Data Transformation Workflows with Foundation Models"
       ],
       verification: {
         status: "verified",
-        note: "Verified by official TCS iON Certificate PDF (ID: 8766-29971339-1016)."
+        note: "Verified by Credly credential badge (URL: credly.com/go/15zj4vFH)."
+      }
+    },
+    {
+      id: "ibm-granite",
+      title: "IBM Granite Models for Software Development",
+      issuer: "IBM SkillsBuild",
+      issueDate: "August 23, 2026",
+      imagePath: "/assets/ibm-granite-models.png",
+      topicsCovered: [
+        "Enterprise Granite Model Capabilities & Architecture",
+        "Code Generation, Refactoring, and Unit Test Assistance",
+        "Developer Productivity Optimization with Foundation Models"
+      ],
+      verification: {
+        status: "verified",
+        note: "Verified by IBM SkillsBuild digital credential record."
+      }
+    },
+    {
+      id: "ibm-data-analytics",
+      title: "Supercharge Your Data Analytics with Generative AI",
+      issuer: "IBM SkillsBuild",
+      issueDate: "August 23, 2026",
+      imagePath: "/assets/ibm-data-analytics.png",
+      topicsCovered: [
+        "AI-Powered Exploratory Data Analysis",
+        "Automated Visualization and Pattern Recognition",
+        "Augmenting Business Intelligence Workflows with Generative AI"
+      ],
+      verification: {
+        status: "verified",
+        note: "Verified by IBM SkillsBuild digital credential badge."
+      }
+    },
+    {
+      id: "ibm-skillsbuild-program-cert",
+      title: "IBM SkillsBuild Course Completion Certificate",
+      issuer: "IBM SkillsBuild",
+      issueDate: "August 23, 2026",
+      pdfPath: "/assets/ibm-skillsbuild-completion.pdf",
+      topicsCovered: [
+        "Comprehensive Enterprise AI and SkillsBuild Program",
+        "Practical Technical Lab Assessments",
+        "Foundations of Machine Learning and LLM Engineering"
+      ],
+      verification: {
+        status: "verified",
+        note: "Verified by official IBM SkillsBuild Completion Certificate PDF document."
       }
     },
     {
@@ -401,24 +477,6 @@ export const portfolioData: PortfolioData = {
       }
     },
     {
-      id: "ibm-genai-llm",
-      title: "Generative AI Essentials: Using LLMs to Work with Data",
-      issuer: "IBM SkillsBuild",
-      issueDate: "August 23, 2026",
-      verificationUrl: "https://www.credly.com/go/15zj4vFH",
-      imagePath: "/assets/ibm-skillsbuild-genai.jpg",
-      topicsCovered: [
-        "Large Language Models (LLMs) Architecture Overview",
-        "Applying Generative AI for Data Extraction and Analysis",
-        "Ethical AI Governance and Hallucination Mitigation",
-        "Data Transformation Workflows with Foundation Models"
-      ],
-      verification: {
-        status: "verified",
-        note: "Verified by Credly credential badge (URL: credly.com/go/15zj4vFH)."
-      }
-    },
-    {
       id: "gcp-vertex-ai",
       title: "Prompt Design in Vertex AI - Skill Badge",
       issuer: "Google Cloud",
@@ -432,39 +490,26 @@ export const portfolioData: PortfolioData = {
       ],
       verification: {
         status: "verified",
-        note: "Verified by Google Cloud Introductory Skill Badge badge record."
+        note: "Verified by Google Cloud Introductory Skill Badge record."
       }
     },
     {
-      id: "ibm-granite",
-      title: "IBM Granite Models for Software Development",
-      issuer: "IBM SkillsBuild",
-      issueDate: "August 2026",
-      imagePath: "/assets/ibm-granite-models.png",
+      id: "tcs-ion",
+      title: "TCS iON Career Edge – Generative AI & Professional Essentials",
+      issuer: "Tata Consultancy Services (TCS iON)",
+      issueDate: "July 21, 2026",
+      validThrough: "25 Apr 2026 – 21 Jul 2026",
+      credentialId: "8766-29971339-1016",
       topicsCovered: [
-        "Enterprise Granite Model Capabilities",
-        "Code Generation, Refactoring, and Unit Test Assistance",
-        "Developer Productivity Optimization with Foundation Models"
+        "Generative AI Essentials & Modern AI Landscape",
+        "Business Etiquette & Professional Conduct",
+        "IT Foundational Skills & Accounting Basics",
+        "Effective Communication & Presentation Skills",
+        "Career Guidance & Resume Crafting"
       ],
       verification: {
         status: "verified",
-        note: "Verified by IBM SkillsBuild digital credential record."
-      }
-    },
-    {
-      id: "ibm-data-analytics",
-      title: "Supercharge Your Data Analytics with Generative AI",
-      issuer: "IBM SkillsBuild",
-      issueDate: "August 2026",
-      imagePath: "/assets/ibm-data-analytics.png",
-      topicsCovered: [
-        "AI-Powered Exploratory Data Analysis",
-        "Automated Visualization and Pattern Recognition",
-        "Augmenting Business Intelligence Workflows with Generative AI"
-      ],
-      verification: {
-        status: "verified",
-        note: "Verified by IBM SkillsBuild digital credential badge."
+        note: "Verified by official TCS iON Certificate PDF (ID: 8766-29971339-1016)."
       }
     },
     {
@@ -473,6 +518,7 @@ export const portfolioData: PortfolioData = {
       issuer: "Best Computer Technology",
       issueDate: "July 2026",
       credentialId: "BCT/2026/689773",
+      pdfPath: "/assets/advance-excel-certificate.pdf",
       topicsCovered: [
         "Advanced Excel Formulas (VLOOKUP, XLOOKUP, INDEX/MATCH)",
         "PivotTables, Dynamic Charts, and Dashboard Design",
@@ -482,6 +528,23 @@ export const portfolioData: PortfolioData = {
       verification: {
         status: "verified",
         note: "Verified by Certificate No: BCT/2026/689773 with 100% score."
+      }
+    },
+    {
+      id: "wbchse-hs-cert",
+      title: "Higher Secondary Certificate (Grade B+)",
+      issuer: "West Bengal Council of Higher Secondary Education",
+      issueDate: "May 07, 2025",
+      credentialId: "No. 416062 | Roll 465211 No. 1029",
+      imagePath: "/assets/wbchse-hs-certificate.jpg",
+      topicsCovered: [
+        "Higher Secondary Examination 2025 from Ariadaha Kalachand High School",
+        "Science Stream Fundamentals and Mathematics",
+        "Overall Grade: B+ (Score: 63%)"
+      ],
+      verification: {
+        status: "verified",
+        note: "Verified by official State Board Certificate No. 416062."
       }
     },
     {
