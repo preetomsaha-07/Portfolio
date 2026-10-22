@@ -147,9 +147,9 @@ export const portfolioData: PortfolioData = {
     },
     {
       platform: "GitHub",
-      url: "https://github.com/",
-      label: "GitHub Profile",
-      isAvailable: false
+      url: "https://github.com/preetomsaha-07",
+      label: "github.com/preetomsaha-07",
+      isAvailable: true
     },
     {
       platform: "Email",

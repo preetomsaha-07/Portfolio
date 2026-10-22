@@ -10,11 +10,12 @@ import {
   AlertCircle, 
   CheckCircle2
 } from 'lucide-react';
-import { LinkedInIcon } from './Icons';
+import { LinkedInIcon, GitHubIcon } from './Icons';
 
 export function ContactSection() {
   const { personal, socialLinks } = portfolioData;
   const linkedin = socialLinks.find(s => s.platform === 'LinkedIn');
+  const github = socialLinks.find(s => s.platform === 'GitHub');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -158,6 +159,21 @@ export function ContactSection() {
                   </a>
                 )}
               </div>
+
+              {github?.isAvailable && (
+                <div className="pt-2 border-t border-theme flex items-center justify-between">
+                  <span className="text-xs text-theme-muted">GitHub Profile</span>
+                  <a
+                    href={github.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-theme-accent hover:underline"
+                  >
+                    <span>{github.label}</span>
+                    <GitHubIcon className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              )}
             </div>
 
           </div>

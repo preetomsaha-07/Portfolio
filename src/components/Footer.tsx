@@ -1,10 +1,11 @@
 import { portfolioData } from '../data/portfolio';
 import { ArrowUp, Mail, ShieldCheck } from 'lucide-react';
-import { LinkedInIcon } from './Icons';
+import { LinkedInIcon, GitHubIcon } from './Icons';
 
 export function Footer() {
   const { personal, socialLinks } = portfolioData;
   const linkedin = socialLinks.find(s => s.platform === 'LinkedIn');
+  const github = socialLinks.find(s => s.platform === 'GitHub');
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,6 +42,17 @@ export function Footer() {
                 aria-label="LinkedIn"
               >
                 <LinkedInIcon className="w-4 h-4 text-[#0A66C2]" />
+              </a>
+            )}
+            {github?.isAvailable && (
+              <a
+                href={github.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg border border-theme bg-theme-card hover:bg-theme-alt text-theme-muted hover:text-theme-main transition-colors"
+                aria-label="GitHub"
+              >
+                <GitHubIcon className="w-4 h-4" />
               </a>
             )}
             <a

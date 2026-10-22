@@ -10,7 +10,7 @@ import {
   Award,
   Sparkles
 } from 'lucide-react';
-import { LinkedInIcon } from './Icons';
+import { LinkedInIcon, GitHubIcon } from './Icons';
 
 interface HeroProps {
   onOpenResume: () => void;
@@ -19,6 +19,7 @@ interface HeroProps {
 export function Hero({ onOpenResume }: HeroProps) {
   const { personal, socialLinks } = portfolioData;
   const linkedin = socialLinks.find(s => s.platform === 'LinkedIn');
+  const github = socialLinks.find(s => s.platform === 'GitHub');
 
   return (
     <section id="hero" className="relative pt-12 pb-16 md:pt-20 md:pb-24 border-b border-theme bg-theme-page">
@@ -101,6 +102,19 @@ export function Hero({ onOpenResume }: HeroProps) {
                 >
                   <LinkedInIcon className="w-4 h-4 text-[#0A66C2]" />
                   <span>LinkedIn</span>
+                </a>
+              )}
+
+              {github?.isAvailable && (
+                <a
+                  href={github.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium border border-theme bg-theme-card hover:bg-theme-alt text-theme-muted hover:text-theme-main transition-colors"
+                  aria-label="Preetom Saha's GitHub Profile"
+                >
+                  <GitHubIcon className="w-4 h-4" />
+                  <span>GitHub</span>
                 </a>
               )}
             </div>
