@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-page: #FFFFFF;
+    --bg-alt: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --accent: #2563EB;
+    --accent-hover: #1D4ED8;
+    --accent-subtle: #EFF6FF;
+    --accent-ring: rgba(37, 99, 235, 0.2);
+    --border-subtle: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --tag-bg: #F1F5F9;
+    --tag-text: #334155;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg-page: #0B1220;
+      --bg-alt: #111827;
+      --bg-card: #172033;
+      --text-main: #F8FAFC;
+      --text-muted: #CBD5E1;
+      --accent: #60A5FA;
+      --accent-hover: #3B82F6;
+      --accent-subtle: #1E293B;
+      --accent-ring: rgba(96, 165, 250, 0.25);
+      --border-subtle: #334155;
+      --border-strong: #475569;
+      --tag-bg: #1E293B;
+      --tag-text: #E2E8F0;
+    }
+  }
+
+  :root[data-theme="dark"],
+  .dark {
+    --bg-page: #0B1220;
+    --bg-alt: #111827;
+    --bg-card: #172033;
+    --text-main: #F8FAFC;
+    --text-muted: #CBD5E1;
+    --accent: #60A5FA;
+    --accent-hover: #3B82F6;
+    --accent-subtle: #1E293B;
+    --accent-ring: rgba(96, 165, 250, 0.25);
+    --border-subtle: #334155;
+    --border-strong: #475569;
+    --tag-bg: #1E293B;
+    --tag-text: #E2E8F0;
+  }
+
+  :root[data-theme="light"] {
+    --bg-page: #FFFFFF;
+    --bg-alt: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --accent: #2563EB;
+    --accent-hover: #1D4ED8;
+    --accent-subtle: #EFF6FF;
+    --accent-ring: rgba(37, 99, 235, 0.2);
+    --border-subtle: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --tag-bg: #F1F5F9;
+    --tag-text: #334155;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Custom utility helpers */
+  .bg-theme-page {
+    background-color: var(--bg-page);
+  }
+  .bg-theme-alt {
+    background-color: var(--bg-alt);
+  }
+  .bg-theme-card {
+    background-color: var(--bg-card);
+  }
+  .text-theme-main {
+    color: var(--text-main);
+  }
+  .text-theme-muted {
+    color: var(--text-muted);
+  }
+  .text-theme-accent {
+    color: var(--accent);
+  }
+  .bg-theme-accent {
+    background-color: var(--accent);
+  }
+  .bg-theme-subtle {
+    background-color: var(--accent-subtle);
+  }
+  .border-theme {
+    border-color: var(--border-subtle);
+  }
+  .border-theme-strong {
+    border-color: var(--border-strong);
+  }
+  .tag-theme {
+    background-color: var(--tag-bg);
+    color: var(--tag-text);
+  }
+}
+
+/* Print styling for resume / portfolio */
+@media print {
+  nav, footer, .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
