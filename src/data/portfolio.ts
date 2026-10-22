@@ -189,19 +189,16 @@ export const portfolioData: PortfolioData = {
       id: "ariadaha-hs",
       institution: "Ariadaha Kalachand High School",
       degree: "Higher Secondary (10+2)",
-      fieldOfStudy: "Science Stream (WBCHSE)",
+      fieldOfStudy: "Science Stream",
       period: "Completed 2025",
-      status: "Graduated with Grade B+",
-      rollNumber: "Roll 465211 No. 1029",
+      status: "Graduated",
       location: "Ariadaha, Kolkata, West Bengal",
-      certificateImagePath: "/assets/wbchse-hs-certificate.jpg",
       highlights: [
-        "Completed Higher Secondary education from West Bengal Council of Higher Secondary Education (WBCHSE).",
-        "Achieved overall Grade B+ on examination (Certificate No: 416062, Issued May 07, 2025)."
+        "Completed Higher Secondary education focusing on science fundamentals, mathematics, and computing principles."
       ],
       verification: {
         status: "verified",
-        note: "Verified by official WBCHSE Higher Secondary Certificate No: 416062."
+        note: "Confirmed from official resume and academic records."
       }
     }
   ],
@@ -528,23 +525,6 @@ export const portfolioData: PortfolioData = {
       verification: {
         status: "verified",
         note: "Verified by Certificate No: BCT/2026/689773 with 100% score."
-      }
-    },
-    {
-      id: "wbchse-hs-cert",
-      title: "Higher Secondary Certificate (Grade B+)",
-      issuer: "West Bengal Council of Higher Secondary Education",
-      issueDate: "May 07, 2025",
-      credentialId: "No. 416062 | Roll 465211 No. 1029",
-      imagePath: "/assets/wbchse-hs-certificate.jpg",
-      topicsCovered: [
-        "Higher Secondary Examination 2025 from Ariadaha Kalachand High School",
-        "Science Stream Fundamentals and Mathematics",
-        "Overall Grade: B+ (Score: 63%)"
-      ],
-      verification: {
-        status: "verified",
-        note: "Verified by official State Board Certificate No. 416062."
       }
     },
     {
