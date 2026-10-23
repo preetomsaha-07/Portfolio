@@ -1,64 +1,83 @@
+
 import { useEffect, useState } from 'react';
 
 export type ThemeMode = 'system' | 'light' | 'dark';
 
-export function useTheme() {
-  const [themeMode, setThemeModeState] = useState<ThemeMode>(() => {
-    if (typeof window === 'undefined') return 'system';
-    return (localStorage.getItem('preetom_theme_mode') as ThemeMode) || 'system';
-  });
+const STORAGE_KEY = 'preetom_theme_mode';
 
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window === 'undefined') return 'light';
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const saved = localStorage.getItem('preetom_theme_mode') as ThemeMode;
-    if (saved === 'dark') return 'dark';
-    if (saved === 'light') return 'light';
-    return prefersDark ? 'dark' : 'light';
-  });
+function getResolvedTheme(mode: ThemeMode): 'light' | 'dark' {
+  if (mode === 'light' || mode === 'dark') {
+    return mode;
+  }
+
+  if (typeof window === 'undefined') {
+    return 'light';
+  }
+
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+}
+
+function getSavedThemeMode(): ThemeMode {
+  if (typeof window === 'undefined') {
+    return 'system';
+  }
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+
+  if (saved === 'light' || saved === 'dark' || saved === 'system') {
+    return saved;
+  }
+
+  return 'system';
+}
+
+export function useTheme() {
+  const [themeMode, setThemeModeState] =
+    useState<ThemeMode>(getSavedThemeMode);
+
+  const [resolvedTheme, setResolvedTheme] =
+    useState<'light' | 'dark'>(() => getResolvedTheme(getSavedThemeMode()));
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    );
 
     const applyTheme = () => {
-      let active: 'light' | 'dark';
-      if (themeMode === 'system') {
-        active = mediaQuery.matches ? 'dark' : 'light';
-      } else {
-        active = themeMode;
-      }
+      const activeTheme = getResolvedTheme(themeMode);
+      const root = document.documentElement;
+      const body = document.body;
 
-      setResolvedTheme(active);
+      setResolvedTheme(activeTheme);
 
-      if (active === 'dark') {
-        document.documentElement.classList.add('dark');
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
+      root.setAttribute('data-theme', activeTheme);
+      root.classList.toggle('dark', activeTheme === 'dark');
+      root.style.colorScheme = activeTheme;
+
+      body.setAttribute('data-theme', activeTheme);
+      body.style.backgroundColor = 'var(--bg-page)';
+      body.style.color = 'var(--text-main)';
     };
 
     applyTheme();
 
-    const handleMediaChange = () => {
-      if (themeMode === 'system') {
-        applyTheme();
-      }
-    };
+    mediaQuery.addEventListener('change', applyTheme);
 
-    mediaQuery.addEventListener('change', handleMediaChange);
-    return () => mediaQuery.removeEventListener('change', handleMediaChange);
+    return () => {
+      mediaQuery.removeEventListener('change', applyTheme);
+    };
   }, [themeMode]);
 
   const setThemeMode = (mode: ThemeMode) => {
+    localStorage.setItem(STORAGE_KEY, mode);
     setThemeModeState(mode);
-    localStorage.setItem('preetom_theme_mode', mode);
   };
 
   return {
     themeMode,
     resolvedTheme,
-    setThemeMode
+    setThemeMode,
   };
 }

@@ -1,5 +1,7 @@
+
 import { useState } from 'react';
 import { useTheme } from './hooks/useTheme';
+
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
@@ -17,36 +19,50 @@ export function App() {
   const { themeMode, resolvedTheme, setThemeMode } = useTheme();
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
+  const openResume = () => setIsResumeOpen(true);
+  const closeResume = () => setIsResumeOpen(false);
+
   return (
-    <div className="min-h-screen bg-theme-page text-theme-main transition-colors duration-200">
-      {/* Sticky Navigation */}
+    <div
+      className="portfolio-page min-h-screen transition-colors duration-300"
+      data-theme={resolvedTheme}
+    >
+      {/* Premium sticky navigation */}
       <Navbar
         themeMode={themeMode}
         resolvedTheme={resolvedTheme}
         setThemeMode={setThemeMode}
-        onOpenResume={() => setIsResumeOpen(true)}
+        onOpenResume={openResume}
       />
 
-      {/* Main Content Sections */}
-      <main id="main-content">
-        <Hero onOpenResume={() => setIsResumeOpen(true)} />
+      {/* Main portfolio content */}
+      <main id="main-content" className="relative">
+        <Hero onOpenResume={openResume} />
+
         <AboutSection />
+
         <ExperienceSection />
+
         <ProjectsSection />
+
         <SkillsSection />
+
         <EducationSection />
+
         <CertificationsSection />
+
         <EventsSection />
+
         <ContactSection />
       </main>
 
-      {/* Footer */}
+      {/* Portfolio footer */}
       <Footer />
 
-      {/* Interactive PDF Resume Modal */}
+      {/* Interactive resume modal */}
       <ResumeModal
         isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
+        onClose={closeResume}
       />
     </div>
   );

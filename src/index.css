@@ -1,135 +1,386 @@
+
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --bg-page: #FFFFFF;
-    --bg-alt: #F8FAFC;
-    --bg-card: #FFFFFF;
-    --text-main: #0F172A;
-    --text-muted: #64748B;
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
-    --accent-subtle: #EFF6FF;
-    --accent-ring: rgba(37, 99, 235, 0.2);
-    --border-subtle: #E2E8F0;
-    --border-strong: #CBD5E1;
-    --tag-bg: #F1F5F9;
-    --tag-text: #334155;
-  }
+/* =========================================
+   PREMIUM PORTFOLIO — DESIGN SYSTEM
+   Light: Soft White + Iris Violet
+   Dark: Matte Black + Cyber Green
+========================================= */
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg-page: #0B1220;
-      --bg-alt: #111827;
-      --bg-card: #172033;
-      --text-main: #F8FAFC;
-      --text-muted: #CBD5E1;
-      --accent: #60A5FA;
-      --accent-hover: #3B82F6;
-      --accent-subtle: #1E293B;
-      --accent-ring: rgba(96, 165, 250, 0.25);
-      --border-subtle: #334155;
-      --border-strong: #475569;
-      --tag-bg: #1E293B;
-      --tag-text: #E2E8F0;
-    }
-  }
+:root {
+  color-scheme: light;
 
-  :root[data-theme="dark"],
-  .dark {
-    --bg-page: #0B1220;
-    --bg-alt: #111827;
-    --bg-card: #172033;
-    --text-main: #F8FAFC;
-    --text-muted: #CBD5E1;
-    --accent: #60A5FA;
-    --accent-hover: #3B82F6;
-    --accent-subtle: #1E293B;
-    --accent-ring: rgba(96, 165, 250, 0.25);
-    --border-subtle: #334155;
-    --border-strong: #475569;
-    --tag-bg: #1E293B;
-    --tag-text: #E2E8F0;
-  }
+  --bg-page: #F8F7FF;
+  --bg-alt: #F0EEFF;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #FFFFFF;
 
-  :root[data-theme="light"] {
-    --bg-page: #FFFFFF;
-    --bg-alt: #F8FAFC;
-    --bg-card: #FFFFFF;
-    --text-main: #0F172A;
-    --text-muted: #64748B;
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
-    --accent-subtle: #EFF6FF;
-    --accent-ring: rgba(37, 99, 235, 0.2);
-    --border-subtle: #E2E8F0;
-    --border-strong: #CBD5E1;
-    --tag-bg: #F1F5F9;
-    --tag-text: #334155;
-  }
+  --text-main: #17152A;
+  --text-muted: #686681;
 
-  * {
-    box-sizing: border-box;
-  }
+  --accent: #6555E8;
+  --accent-hover: #5141D0;
+  --accent-soft: #E9E5FF;
+  --accent-contrast: #FFFFFF;
 
-  html {
-    scroll-behavior: smooth;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
+  --border-color: #E3DFFD;
+  --shadow-color: 99, 85, 232;
 
-  body {
-    background-color: var(--bg-page);
-    color: var(--text-main);
-    transition: background-color 0.2s ease, color 0.2s ease;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
+  --success: #15803D;
+  --focus-ring: #8172FF;
 
-  /* Custom utility helpers */
-  .bg-theme-page {
-    background-color: var(--bg-page);
-  }
-  .bg-theme-alt {
-    background-color: var(--bg-alt);
-  }
-  .bg-theme-card {
-    background-color: var(--bg-card);
-  }
-  .text-theme-main {
-    color: var(--text-main);
-  }
-  .text-theme-muted {
-    color: var(--text-muted);
-  }
-  .text-theme-accent {
-    color: var(--accent);
-  }
-  .bg-theme-accent {
-    background-color: var(--accent);
-  }
-  .bg-theme-subtle {
-    background-color: var(--accent-subtle);
-  }
-  .border-theme {
-    border-color: var(--border-subtle);
-  }
-  .border-theme-strong {
-    border-color: var(--border-strong);
-  }
-  .tag-theme {
-    background-color: var(--tag-bg);
-    color: var(--tag-text);
+  --radius-card: 20px;
+  --radius-button: 12px;
+
+  --page-gradient:
+    radial-gradient(ellipse at 10% 0%, rgba(129, 114, 255, 0.10), transparent 40%),
+    var(--bg-page);
+}
+
+/* Explicit dark theme */
+:root[data-theme="dark"],
+:root.dark {
+  color-scheme: dark;
+
+  --bg-page: #090B0A;
+  --bg-alt: #101612;
+  --bg-card: #121814;
+  --bg-elevated: #171F19;
+
+  --text-main: #F2FFF6;
+  --text-muted: #A0B3A5;
+
+  --accent: #39FF88;
+  --accent-hover: #70FFA8;
+  --accent-soft: #173D29;
+  --accent-contrast: #07130B;
+
+  --border-color: #263A2D;
+  --shadow-color: 57, 255, 136;
+
+  --success: #70FFA8;
+  --focus-ring: #39FF88;
+
+  --page-gradient:
+    radial-gradient(ellipse at 80% 0%, rgba(57, 255, 136, 0.08), transparent 38%),
+    var(--bg-page);
+}
+
+/* Automatic device theme when no explicit theme is selected */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+
+    --bg-page: #090B0A;
+    --bg-alt: #101612;
+    --bg-card: #121814;
+    --bg-elevated: #171F19;
+
+    --text-main: #F2FFF6;
+    --text-muted: #A0B3A5;
+
+    --accent: #39FF88;
+    --accent-hover: #70FFA8;
+    --accent-soft: #173D29;
+    --accent-contrast: #07130B;
+
+    --border-color: #263A2D;
+    --shadow-color: 57, 255, 136;
+
+    --success: #70FFA8;
+    --focus-ring: #39FF88;
+
+    --page-gradient:
+      radial-gradient(ellipse at 80% 0%, rgba(57, 255, 136, 0.08), transparent 38%),
+      var(--bg-page);
   }
 }
 
-/* Print styling for resume / portfolio */
-@media print {
-  nav, footer, .no-print {
-    display: none !important;
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+::selection {
+  color: var(--accent-contrast);
+  background: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+/* Theme utilities */
+.bg-theme-page {
+  background-color: var(--bg-page);
+}
+
+.bg-theme-alt {
+  background-color: var(--bg-alt);
+}
+
+.bg-theme-card {
+  background-color: var(--bg-card);
+}
+
+.text-theme-main {
+  color: var(--text-main);
+}
+
+.text-theme-muted {
+  color: var(--text-muted);
+}
+
+.text-theme-accent {
+  color: var(--accent);
+}
+
+.bg-theme-accent {
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.border-theme {
+  border-color: var(--border-color);
+}
+
+/* Premium page background */
+.portfolio-page {
+  min-height: 100vh;
+  color: var(--text-main);
+  background: var(--page-gradient);
+  transition: background 250ms ease, color 250ms ease;
+}
+
+.portfolio-container {
+  width: min(100% - 40px, 1160px);
+  margin-inline: auto;
+}
+
+.portfolio-section {
+  position: relative;
+  padding-block: clamp(64px, 9vw, 112px);
+}
+
+.portfolio-section + .portfolio-section {
+  border-top: 1px solid var(--border-color);
+}
+
+/* Cards */
+.portfolio-card {
+  color: var(--text-main);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 32px rgba(var(--shadow-color), 0.045);
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 38px rgba(var(--shadow-color), 0.12);
+}
+
+/* Buttons */
+.portfolio-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 11px 20px;
+  color: var(--accent-contrast);
+  background: var(--accent);
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  font-size: 0.95rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.portfolio-button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(var(--shadow-color), 0.2);
+}
+
+.portfolio-button:active {
+  transform: translateY(0);
+}
+
+.portfolio-button-outline {
+  color: var(--text-main);
+  background: transparent;
+  border: 1px solid var(--border-color);
+}
+
+.portfolio-button-outline:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* Links and accents */
+.portfolio-link {
+  color: var(--accent);
+  transition: opacity 180ms ease;
+}
+
+.portfolio-link:hover {
+  opacity: 0.75;
+}
+
+.portfolio-accent-glow {
+  box-shadow: 0 0 28px rgba(var(--shadow-color), 0.16);
+}
+
+/* Text helpers */
+.portfolio-heading {
+  color: var(--text-main);
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  font-weight: 750;
+}
+
+.portfolio-muted {
+  color: var(--text-muted);
+}
+
+.portfolio-gradient-text {
+  color: var(--accent);
+  background: linear-gradient(
+    100deg,
+    var(--accent),
+    var(--accent-hover)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Form controls */
+input,
+textarea,
+select {
+  color: var(--text-main);
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  outline-color: var(--focus-ring);
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) var(--bg-page);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border: 2px solid var(--bg-page);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  body {
-    background: white !important;
-    color: black !important;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .portfolio-container {
+    width: min(100% - 32px, 1160px);
   }
 }
